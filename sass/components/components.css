@@ -1,0 +1,10 @@
+/* traitement du bouton*/
+#select {
+  text-align: center;
+}
+
+#select .addBasket {
+  background-color: darkorchid;
+  color: white;
+}
+/*# sourceMappingURL=components.css.map */

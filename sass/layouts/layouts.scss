@@ -1,0 +1,65 @@
+/*Traitement du Header*/
+
+header{
+    position: sticky;
+    top: 0;
+     background-color: #F3EAF2;
+         nav{
+             display: flex;
+             flex-wrap: wrap;
+             justify-content: space-between;
+             .haut{
+                 display: flex;
+                 flex-wrap: wrap;
+                 margin-top: 25px;
+                 p{
+                     margin-right: 20px;
+                     font-size: larger;
+                     align-items: center;
+                     font-family: 'Fredoka One', cursive;
+                     cursor: pointer;
+                 }
+ 
+             }
+                     img{
+                     width: 200px;
+                     cursor: pointer;
+                     }
+         }
+      }
+         /*Traitement du footer */
+    footer{
+        width: 100%;
+        margin-top: 20px;
+        bottom: 0;
+       
+        background-color:black;
+        color: blanchedalmond;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        #social{
+            display: flex;
+            justify-content: space-between;
+        }
+            p{
+                margin-right: 20px;
+                color: blanchedalmond;
+                cursor: pointer;
+            }
+    }
+
+
+
+/* traitement du formulaire*/
+.form{
+    height:400px;
+    border: 3px solid black;
+    border-radius: 5px;
+    text-align: center;
+    margin-left: 10px;
+    padding-top: 40px;
+    .button{
+        margin-top: 30px;
+    }
+}

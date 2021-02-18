@@ -1,0 +1,16 @@
+/*Page Panier*/
+#recapForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+table {
+  width: 600px;
+  border: 2px solid black;
+}
+
+table td {
+  border: 2px solid black;
+}
+/*# sourceMappingURL=pages.css.map */
