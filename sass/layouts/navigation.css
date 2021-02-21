@@ -1,0 +1,43 @@
+/*Traitement du Header*/
+header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: #F3EAF2;
+}
+
+header nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+header nav .haut {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  margin-top: 25px;
+}
+
+header nav .haut p {
+  margin-right: 20px;
+  font-size: larger;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: 'Fredoka One', cursive;
+  cursor: pointer;
+}
+
+header nav img {
+  width: 200px;
+  cursor: pointer;
+}
+/*# sourceMappingURL=navigation.css.map */

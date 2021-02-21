@@ -1,0 +1,15 @@
+/* traitement du bouton produit*/
+#select {
+  text-align: center;
+}
+
+#select .addBasket {
+  background-color: darkorchid;
+  color: white;
+}
+
+/* traitement du bouton panier*/
+.button {
+  margin-top: 30px;
+}
+/*# sourceMappingURL=buttons.css.map */

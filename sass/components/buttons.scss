@@ -1,4 +1,4 @@
- /* traitement du bouton*/
+ /* traitement du bouton produit*/
  #select{
     text-align: center;
     .addBasket{
@@ -6,3 +6,7 @@
         color: white;
     }
   }   
+  /* traitement du bouton panier*/
+  .button{
+    margin-top: 30px;
+}
