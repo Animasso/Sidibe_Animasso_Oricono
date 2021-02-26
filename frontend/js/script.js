@@ -25,3 +25,18 @@ function chargeProduit(){
     };
     request.send();
 }
+/*Fonction pour la sélection et l'affichage du produit selectionné dans la page produit */
+let productId=window.location.href.split[1];
+console.log(productId);
+
+function selectProduct(){
+    var request=new XMLHttpRequest();
+    request.open('GET','http://localhost:3000/api/teddies'+ productId);
+    request.onreadystatechange=function () {
+        if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
+            var response = JSON.parse(request.responseText);
+            console.log(response);
+        }
+}
+
+}
