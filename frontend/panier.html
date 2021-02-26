@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="fr">
+   <head> 
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Page panier ourson Orinoco</title>
+      <link rel="stylesheet" type="text/css" href="sass/main.css" />
+      <script src="https://kit.fontawesome.com/7574934ccb.js" crossorigin="anonymous"></script>
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+      <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap" rel="stylesheet">
+      <script src="js/script.js"></script>
+   </head>
+   <body>
+      <div class="page">
+      <header>
+         <!--Barre de navigation-->
+         <nav>
+            <figure><a href="index.html"><img src="images/orinoco.png" alt="titre"></figure>
+            </a>
+            <div class="haut">
+               <p class="onglet">Nouveautés</p>
+               <p class="onglet">Appareil photos</p>
+               <p class="onglet">Meuble</p>
+               <p class="onglet">Oursons</p>
+               <a href="panier.html"><p class="onglet"> <i class="fas fa-shopping-cart"></i></p></a>
+            </div>
+         </nav>
+         <!-- Fin de la barre de navigation-->
+      </header>
+      <main>
+        <div id="recapForm">
+            <div class="recap">
+                <h1>Votre panier</h1>
+                <table>
+                    <tr>
+                        <th>Produit</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2Z</td>
+                        <td>E2</td>
+                    </tr>
+                </table>
+            </div>
+          
+            <div class="form">
+                <h2>Valider votre commande</h2>
+                <form action="/ma-page-de-traitement" method="post">
+                    <div>
+                        <label for="name">Nom :</label>
+                        <input type="text" id="name" name="user_name">
+                    </div>
+                    <div>
+                        <label for="name">Prenom:</label>
+                        <input type="text" id="Prenom" name="user_name">
+                    </div>
+                    <div>
+                        <label for="mail">Adresse mail :</label>
+                        <input type="email" id="mail" name="user_mail">
+                    </div>
+                    <div>
+                        <label for="msg">Adresse :</label>
+                        <textarea id="Adresse" name="user_message"></textarea>
+                    </div>
+                    <div>
+                        <label for="msg">Ville :</label>
+                        <textarea id="Ville" name="user_message"></textarea>
+                    </div>
+                    <div>
+                        <label for="msg">Code Postal :</label>
+                        <textarea id="Postal" name="user_message"></textarea>
+                    </div>
+
+                </form>
+                <div class="button">
+                    <a href="confirmation.html"><button type="submit">Procéder au paiement</button></a>
+                </div>
+            </div>
+
+        </div>
+      </main>
+      <footer>
+        <a href="mailto:asidibe017@gmail.com"><p>Contactez-nous</p></a>
+        <div id="social">
+        <p><i class="fab fa-facebook-square"></i></p>
+        <p><i class="fab fa-instagram-square"></i></p>
+        <p><i class="fab fa-linkedin"></i></p>
+        </div>
+        </footer>
+      </div>
+      
+      </body>
+      <script src="js/script.js"></script>
+      </html>
+      
+   
