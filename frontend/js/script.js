@@ -32,7 +32,7 @@ function selectProduct(){
     let productId=window.location.href.split["?id="][1];
     console.log(productId);
     var request=new XMLHttpRequest();
-    request.open('GET','http://localhost:3000/api/teddies/'+ productId);
+    request.open('GET','http://localhost:3000/api/teddies/'+productId);
     request.onreadystatechange=function () {
         if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
             var response = JSON.parse(request.responseText);
@@ -50,6 +50,7 @@ function selectProduct(){
                 </div>
               `;
             }
-        }
+        };
+            request.send();
     }
 
