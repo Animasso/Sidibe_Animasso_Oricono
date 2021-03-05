@@ -89,6 +89,7 @@ function addBasket(){
     localStorage.setItem("panier",strStorage);
     if(panier !==null){
         totalPrice=0
+        for(i=0;i<teddies.length;i++)
         document.getElementsByClassName('recap').innerHTML+=`
         <table>
             <tr>
@@ -97,8 +98,8 @@ function addBasket(){
                 <th>Quantité</th>
             </tr>
             <tr>
-                <td>${response.name} </td>
-                <td>${response.price / 100} eur</td>
+                <td>${response[i].name} </td>
+                <td>${response[i].price / 100} eur</td>
                 <td></td>
             </tr>
         </table>
