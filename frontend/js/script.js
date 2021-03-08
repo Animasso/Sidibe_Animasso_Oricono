@@ -127,13 +127,15 @@ function deleteBasket(){
 let myForm=document.getElementsByClassName('form');
 myForm.addEventListener('submit',function(e) {
     let myInput=document.getElementById('name');
-    let myRegex= /^[a-zA-Z-\s]+$/;
+    const myRegexName= /^[a-zA-Z-\s]+$/;
+    const myRegexEmail= /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ ;
+    const myRegexAdress= /^[a-zA-Z0-9-\s]+$/;
     if(myInput.value==''){
         let myError=document.getElementById('error');
         myError.innerHTML='Le champs doit etre remplit';
         myError.style.color=red;
         e.preventDefault();
-    }else if(myRegex.test(myInput.value)==false) {
+    }else if(myRegexName.test(myInput.value)==false) {
         let myError=document.getElementById('error');
         myError.innerHTML='Utiliser des lettres ou des tiret pas de chiffre';
         myError.style.color=red;
@@ -143,9 +145,18 @@ myForm.addEventListener('submit',function(e) {
 })
 /*Requete pour envoyer le formulaire passé avec la commande*/
 function postForm(myForm){
+    let btnSend=document.getElementById('buttonForm');
+    btnSend.addEventListener("click",()=>{
+        localStorage.setItem("nom",document.querySelector("#Name").value);
+        localStorage.setItem("prenom",document.querySelector("#Prenom").value);
+        localStorage.setItem("email",document.querySelector("#Mail").value);
+        localStorage.setItem("adresse",document.querySelector("#Adresse").value);
+        localStorage.setItem("ville",document.querySelector("#Ville").value);
+        localStorage.setItem("code postal",document.querySelector("#Postal").value);
+    })
     var request = new XMLHttpRequest();
-request.open("POST", "http://localhost:3000/api/teddies/order");
-request.setRequestHeader("Content-Type", "application/json");
-request.send(JSON.stringify(jsonBody));
-return response.json();
+    request.open("POST", "http://localhost:3000/api/teddies/order");
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(myForm))
+    return response.json();
 }
