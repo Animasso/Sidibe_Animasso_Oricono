@@ -11,7 +11,7 @@ function chargeProduit(){
             var response = JSON.parse(request.responseText);
             console.log(response);
             for (i = 0; i < response.length; i++) {
-/*Utilisation de la sructure html pour mettre en place la page produit */
+/*Utilisation de la sructure html pour mettre en place la page produit */ 
                 document.getElementById('oursons').innerHTML += `
                <div class="teddie1">
                   <a href="produit.html?id=${response[i]._id}">
@@ -87,26 +87,65 @@ function addBasket(){
     panier.push(produit);
     strStorage=JSON.stringify(panier);
     localStorage.setItem("panier",strStorage);
-    if(panier !==null){
-        totalPrice=0
-        for(i=0;i<teddies.length;i++)
-        document.getElementsByClassName('recap').innerHTML+=`
-        <table>
-            <tr>
-                <th>Produit</th>
-                <th>Prix</th>
-                <th>Quantité</th>
-            </tr>
-            <tr>
-                <td>${response[i].name} </td>
-                <td>${response[i].price / 100} eur</td>
-                <td></td>
-            </tr>
-        </table>
+
+   
+        for(i=0; i<[i].teddies; i++)
+        if(panier !==null){
+        document.getElementById('recap').innerHTML+=`
+                    <table>
+                        <tr>
+                            <th>Produit</th>
+                            <th>Prix</th>
+                            <th>Quantité</th>
+                        </tr>
+                        <tr>
+                            <td>${response[i].name}</td>
+                            <td>${response[i].price / 100}eur</td>
+                            <td></td>
+                        </tr>
+                    </table>
+        
         `;
     }
    
 }
 function deleteProduct(){
-    localStorage.clear(produit._id);  
+    let minusProduct=document.getElementById('buttonDelete');
+    minusProduct.addEventListener('click',function(){
+        if(teddies[i].quantity>1){
+            teddies[i].quantity--;
+        }
+        localStorage.setItem('panier',JSON.stringify(strStorage))
+    })
+}
+
+function deleteBasket(){
+    localStorage.clear(panier);  
+}
+
+/*formulaire */
+let myForm=document.getElementsByClassName('form');
+myForm.addEventListener('submit',function(e) {
+    let myInput=document.getElementById('name');
+    let myRegex= /^[a-zA-Z-\s]+$/;
+    if(myInput.value==''){
+        let myError=document.getElementById('error');
+        myError.innerHTML='Le champs doit etre remplit';
+        myError.style.color=red;
+        e.preventDefault();
+    }else if(myRegex.test(myInput.value)==false) {
+        let myError=document.getElementById('error');
+        myError.innerHTML='Utiliser des lettres ou des tiret pas de chiffre';
+        myError.style.color=red;
+        e.preventDefault();
+    }
+    
+})
+/*Requete pour envoyer le formulaire passé avec la commande*/
+function postForm(myForm){
+    var request = new XMLHttpRequest();
+request.open("POST", "http://localhost:3000/api/teddies/order");
+request.setRequestHeader("Content-Type", "application/json");
+request.send(JSON.stringify(jsonBody));
+return response.json();
 }

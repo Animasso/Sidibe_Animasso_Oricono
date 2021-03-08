@@ -10,7 +10,7 @@
       <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap" rel="stylesheet">
-      <script src="script.js"></script>
+      
    </head>
     <body>
         <div class="page">
@@ -31,45 +31,50 @@
         </header>
         <main>
             <div id="recapForm">
-                <div class="recap">
+                <div id="recap">
                     <h1>Votre panier</h1>
                     
+                    <div id="buttonDelete">
+                        <button type="button">Supprimer l'article</button>
+                    </div>
+                    <div id="totalPrice">TOTAL 54638</div>
                 </div>
           
-            <div class="form">
-                <h2>Valider votre commande</h2>
-                <form action="/ma-page-de-traitement" method="post">
-                    <div>
-                        <label for="name">Nom :</label>
-                        <input type="text" id="name" name="user_name">
+                <div class="form">
+                    <h2>Valider votre commande</h2>
+                    <form action='confirmation.html' method="post" type="submit">
+                        <div>
+                            <label for="name">Nom :</label>
+                            <input type="text" id="name" name="user_name">
+                        </div>
+                        <div>
+                            <label for="name">Prenom:</label>
+                            <input type="text" id="Prenom" name="user_name">
+                        </div>
+                        <div>
+                            <label for="mail">Adresse mail :</label>
+                            <input type="email" id="mail" name="user_mail">
+                        </div>
+                        <div>
+                            <label for="msg">Adresse :</label>
+                            <textarea id="Adresse" name="user_message"></textarea>
+                        </div>
+                        <div>
+                            <label for="msg">Ville :</label>
+                            <textarea id="Ville" name="user_message"></textarea>
+                        </div>
+                        <div>
+                            <label for="msg">Code Postal :</label>
+                            <textarea id="Postal" name="user_message"></textarea>
+                        </div>
+                       <span id="error"></span>
+                       <div class="button">
+                        <a href="confirmation.html"><button type="submit">Procéder au paiement</button></a>
                     </div>
-                    <div>
-                        <label for="name">Prenom:</label>
-                        <input type="text" id="Prenom" name="user_name">
-                    </div>
-                    <div>
-                        <label for="mail">Adresse mail :</label>
-                        <input type="email" id="mail" name="user_mail">
-                    </div>
-                    <div>
-                        <label for="msg">Adresse :</label>
-                        <textarea id="Adresse" name="user_message"></textarea>
-                    </div>
-                    <div>
-                        <label for="msg">Ville :</label>
-                        <textarea id="Ville" name="user_message"></textarea>
-                    </div>
-                    <div>
-                        <label for="msg">Code Postal :</label>
-                        <textarea id="Postal" name="user_message"></textarea>
-                    </div>
-
-                </form>
-                <div class="button">
-                    <a href="confirmation.html"><button type="submit">Procéder au paiement</button></a>
+                    </form>
+                   
                 </div>
             </div>
-        </div>
         </main>
         <footer>
             <a href="mailto:asidibe017@gmail.com"><p>Contactez-nous</p></a>
@@ -81,4 +86,5 @@
         </footer>
     </div>
     </body>
+    <script src="script.js"></script>
 </html>
