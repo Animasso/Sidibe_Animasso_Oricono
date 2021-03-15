@@ -105,6 +105,7 @@ table {
   width: 400px;
   height: auto;
   border: 2px solid black;
+  margin: 0;
 }
 
 table td {
@@ -123,7 +124,7 @@ table td {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
   }
-  #recapForm .form {
+  #recapForm #form {
     margin-top: 10px;
     width: auto;
     height: auto;

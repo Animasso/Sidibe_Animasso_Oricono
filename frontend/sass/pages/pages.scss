@@ -87,6 +87,7 @@ body {
     width: 400px;
     height: auto;
     border: 2px solid black;
+    margin: 0;
     td{
         border: 2px solid black; 
      }
@@ -100,7 +101,7 @@ body {
    #recapForm{
        display: flex;
        flex-wrap: wrap;
-       .form{
+       #form{
            margin-top: 10px;
            width: auto;
            height: auto;

@@ -22,7 +22,7 @@
       justify-content: space-around;
 }
 
-#recapForm .form {
+#recapForm #form {
   -webkit-box-shadow: 10px 5px 5px gray;
           box-shadow: 10px 5px 5px gray;
   margin-left: 30px;
@@ -215,6 +215,7 @@ table {
   width: 400px;
   height: auto;
   border: 2px solid black;
+  margin: 0;
 }
 
 table td {
@@ -233,7 +234,7 @@ table td {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
   }
-  #recapForm .form {
+  #recapForm #form {
     margin-top: 10px;
     width: auto;
     height: auto;

@@ -2,34 +2,42 @@ let produit=null;
 let totalPrice=0;
 
 
+
 /* Fonction pour récuperer et charger les oursons dans la page index */
 function chargeProduit(){
-    var request=new XMLHttpRequest();
-    request.open('GET','http://localhost:3000/api/teddies');
-    request.onreadystatechange=function () {
-        if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
-            var response = JSON.parse(request.responseText);
-            console.log(response);
-            for (i = 0; i < response.length; i++) {
-/*Utilisation de la sructure html pour mettre en place la page produit */ 
-                document.getElementById('oursons').innerHTML += `
-               <div class="teddie1">
-                  <a href="produit.html?id=${response[i]._id}">
-                     <figure><img src="${response[i].imageUrl}" alt=""></figure>
-                  </a>
-                  <div class="descriptionPrice">
-                   <div class="name">${response[i].name} </div>
-                   <div class="description">${response[i].description} </div>
-                   <div class="prix">${response[i].price / 100} eur</div>
-                  </div>
-                </div>
-              `;
-            }
-
+    fetch("http://localhost:3000/api/teddies")
+    .then(response=>{
+        console.log(response)
+        if(response.ok){
+            return response.json();
+        }else{
+            return Promise.reject(response.status);
         }
-    };
-    request.send();
+    })
+    .then(data=>{
+        console.log(data);
+            for (i = 0; i < data.length; i++) {
+                /*Utilisation de la sructure html pour mettre en place la page produit */ 
+                                document.getElementById('oursons').innerHTML += `
+                            <div class="teddie1">
+                                <a href="produit.html?id=${data[i]._id}">
+                                    <figure><img src="${data[i].imageUrl}" alt=""></figure>
+                                </a>
+                                <div class="descriptionPrice">
+                                <div class="name">${data[i].name} </div>
+                                <div class="description">${data[i].description} </div>
+                                <div class="prix">${data[i].price / 100} eur</div>
+                                </div>
+                                </div>
+                            `;
+            }
+        
+
+    })
+ 
 }
+
+
 /*Fonction pour la sélection et l'affichage du produit selectionné dans la page produit */
 function selectProduct(){
     /*On cree une variable productId qui stockera les id specifique à chaque ourson*/ 
@@ -44,6 +52,7 @@ function selectProduct(){
             console.log("response:",response);
 /*Donc un produit égal la reponse qui contiendra un ourson avec son id, description,image,prix */
             produit=response;
+            
 
 /*On cree une variable options vide qui va acceuilir les options couleur de chaque oursons*/
             let options="";
@@ -81,82 +90,86 @@ function addBasket(){
     let strStorage=localStorage.getItem("panier");
     if (strStorage!==null){
         panier=JSON.parse(strStorage);
-    }else{
-        return [];
     }
     panier.push(produit);
     strStorage=JSON.stringify(panier);
     localStorage.setItem("panier",strStorage);
+}
 
-   
-        for(i=0; i<[i].teddies; i++)
-        if(panier !==null){
-        document.getElementById('recap').innerHTML+=`
-                    <table>
-                        <tr>
-                            <th>Produit</th>
-                            <th>Prix</th>
-                            <th>Quantité</th>
-                        </tr>
-                        <tr>
-                            <td>${response[i].name}</td>
-                            <td>${response[i].price / 100}eur</td>
-                            <td></td>
-                        </tr>
-                    </table>
-        
+function displayBasket(){
+    let panier=[];
+    let strStorage=localStorage.getItem("panier");
+    if (strStorage!==null){
+        panier=JSON.parse(strStorage);
+    }
+    for(i=0; i<panier.length; i++){
+        document.querySelector('#recap table tbody').innerHTML+=`
+                    <tr>
+                        <td>${panier[i].name}<figure><img src="${panier[i].imageUrl}alt=""></figure></td>
+                        <td>${panier[i].price / 100} euros</td>
+                        <td>${panier[i].quantity}</td>
+                        <td><button id="delete"><i class="fas fa-minus-circle"></i>supprimer</button></td>
+                    </tr>
+                    <div id="total"></div>
         `;
-    }
-   
-}
-function deleteProduct(){
-    let minusProduct=document.getElementById('buttonDelete');
-    minusProduct.addEventListener('click',function(){
-        if(teddies[i].quantity>1){
-            teddies[i].quantity--;
-        }
-        localStorage.setItem('panier',JSON.stringify(strStorage))
-    })
-}
-
-function deleteBasket(){
-    localStorage.clear(panier);  
-}
-
-/*formulaire */
-let myForm=document.getElementsByClassName('form');
-myForm.addEventListener('submit',function(e) {
-    let myInput=document.getElementById('name');
-    const myRegexName= /^[a-zA-Z-\s]+$/;
-    const myRegexEmail= /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/ ;
-    const myRegexAdress= /^[a-zA-Z0-9-\s]+$/;
-    if(myInput.value==''){
-        let myError=document.getElementById('error');
-        myError.innerHTML='Le champs doit etre remplit';
-        myError.style.color=red;
-        e.preventDefault();
-    }else if(myRegexName.test(myInput.value)==false) {
-        let myError=document.getElementById('error');
-        myError.innerHTML='Utiliser des lettres ou des tiret pas de chiffre';
-        myError.style.color=red;
-        e.preventDefault();
-    }
+    } 
     
-})
-/*Requete pour envoyer le formulaire passé avec la commande*/
-function postForm(myForm){
-    let btnSend=document.getElementById('buttonForm');
-    btnSend.addEventListener("click",()=>{
-        localStorage.setItem("nom",document.querySelector("#Name").value);
-        localStorage.setItem("prenom",document.querySelector("#Prenom").value);
-        localStorage.setItem("email",document.querySelector("#Mail").value);
-        localStorage.setItem("adresse",document.querySelector("#Adresse").value);
-        localStorage.setItem("ville",document.querySelector("#Ville").value);
-        localStorage.setItem("code postal",document.querySelector("#Postal").value);
+}
+function clearBasket(){
+    let clearProducts=document.getElementById('buttonDelete');
+    clearProducts.addEventListener('click',function(){
+        localStorage.clear();
+        window.location.reload(); 
     })
-    var request = new XMLHttpRequest();
-    request.open("POST", "http://localhost:3000/api/teddies/order");
-    request.setRequestHeader("Content-Type", "application/json");
-    request.send(JSON.stringify(myForm))
-    return response.json();
+}
+    
+    function deleteProduct(){
+        let panier=[];
+        let newPanier=[];
+        let strStorage=localStorage.getItem("panier");
+         if (strStorage!==null){ 
+            panier=JSON.parse(strStorage);
+            for (let i= 0; i < panier.length; i++) {
+                if (panier.productId!==newPanier.productId) {
+                    newPanier.push(produit);
+                    newPanier=panier;
+                    localStorage.setItem("panier",JSON.stringify(Newpanier));
+                    window.location.reload();
+                    displayBasket();
+                }
+            }
+        }
+    }
+
+function sendForm (){
+    let btnValidate=document.getElementById('buttonForm');
+    btnValidate.addEventListener('click',function(event){
+            event.preventDefault();
+            let contact=
+            {
+                firstName:document.getElementById('Nom').value,
+                lastName:document.getElementById('Prenom').value,
+                address:document.getElementById('Adresse').value,
+                city:document.getElementById('Ville').value, 
+                email:document.getElementById('Mail').value,
+            }
+                product=JSON.parse(strStorage);
+                let objetSend= {
+                    contact,product,
+                };
+                requestSendObjet=JSON.stringify(objetSend);
+                var request=new XMLHttpRequest();
+                request.open('POST','http://localhost:3000/api/teddies/order');
+                
+                    request.onreadystatechange=function () {
+                        if (request.readyState == XMLHttpRequest.DONE) {
+                            var response = JSON.parse(request.responseText);
+                            console.log("response:",response);
+                            localStorage.setItem('commande',request.responseText); 
+                        }
+                    };        
+                    request.setRequestHeader("Content-Type","application.json");
+                    request.send("requestSendObjet");
+
+    })  
 }

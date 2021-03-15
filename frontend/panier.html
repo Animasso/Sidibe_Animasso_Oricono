@@ -12,13 +12,13 @@
       <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap" rel="stylesheet">
       
    </head>
-    <body>
+    <body onload="displayBasket()">
         <div class="page">
         <header>
          <!--Barre de navigation-->
          <nav>
-            <figure><a href="index.html"><img src="images/orinoco.png" alt="titre"></figure>
-            </a>
+            <figure><a href="index.html"><img src="images/orinoco.png" alt="titre"></a></figure>
+            
             <div class="haut">
                <p class="onglet">Nouveautés</p>
                <p class="onglet">Appareil photos</p>
@@ -33,45 +33,52 @@
             <div id="recapForm">
                 <div id="recap">
                     <h1>Votre panier</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Produit</th>
+                                <th>Prix</th>
+                                <th>Quantité</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
                     
                     <div id="buttonDelete">
-                        <button type="button">Supprimer l'article</button>
+                        <button onclick="clearBasket()" id="clearBasket" type="button">vider le panier</button>
                     </div>
-                    <div id="totalPrice">TOTAL 54638</div>
+                    <div id="totalPrice"></div>
                 </div>
           
-                <div class="form">
+                <div id="form">
                     <h2>Valider votre commande</h2>
                     <fieldset>
-                    <form action='confirmation.html' method="post" type="submit">
+                    <form action='' method="POST">
                         <div>
-                            <label for="name">Nom :</label>
-                            <input type="text" id="Name" name="user_name">
+                            <label for="Nom">Nom :</label>
+                            <input type="text" id="Nom" required pattern="[a-zA-Z]{2,20}" name="user_name">
                         </div>
                         <div>
-                            <label for="name">Prenom:</label>
-                            <input type="text" id="Prenom" name="user_name">
+                            <label for="Prenom">Prenom:</label>
+                            <input type="text" id="Prenom" required pattern="[a-zA-Z]{2,20}" name="user_name">
                         </div>
                         <div>
-                            <label for="mail">Adresse mail :</label>
-                            <input type="email" id="Mail" name="user_mail">
+                            <label for="Mail">Adresse mail :</label>
+                            <input type="email" id="Mail" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" name="user_mail">
                         </div>
                         <div>
-                            <label for="msg">Adresse :</label>
-                            <textarea id="Adresse" name="user_message"></textarea>
+                            <label for="Adresse">Adresse :</label>
+                            <input type="text" id=Adresse required pattern="[a-zA-Z0-9\s]+" name="user_message">
                         </div>
                         <div>
-                            <label for="msg">Ville :</label>
-                            <textarea id="Ville" name="user_message"></textarea>
+                            <label for="Ville">Ville :</label>
+                            <input type="text" id="Ville" required pattern="[a-zA-Z]{2,20}" name="user_message">
                         </div>
-                        <div>
-                            <label for="msg">Code Postal :</label>
-                            <textarea id="Postal" name="user_message"></textarea>
-                        </div>
+                       
                        <span id="error"></span>
 
                        <div class="button">
-                        <a href="confirmation.html"><button id="buttonForm" type="submit">Procéder au paiement</button></a>
+                        <button id="buttonForm" type="submit">Valider votre commande</button>
                        </div>
                     </form>
                     </fieldset>
@@ -89,5 +96,5 @@
         </footer>
     </div>
     </body>
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </html>
