@@ -36,9 +36,9 @@
                     <table>
                         <thead>
                             <tr>
-                                <th>Produit</th>
+                                <th>Nom</th>
+                                <th>Ourson</th>
                                 <th>Prix</th>
-                                <th>Quantité</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
@@ -53,22 +53,22 @@
                 <div id="form">
                     <h2>Valider votre commande</h2>
                     <fieldset>
-                    <form action='' method="POST">
+                    <form action='' method="POST" onsubmit="sendForm()">
                         <div>
                             <label for="Nom">Nom :</label>
-                            <input type="text" id="Nom" required pattern="[a-zA-Z]{2,20}" name="user_name">
+                            <input type="text" id="Nom" required pattern="[a-zA-Z]{2,20}" name="user_name"><br/>
                         </div>
                         <div>
                             <label for="Prenom">Prenom:</label>
-                            <input type="text" id="Prenom" required pattern="[a-zA-Z]{2,20}" name="user_name">
+                            <input type="text" id="Prenom" required pattern="[a-zA-Z]{2,20}" name="user_name"><br/>
                         </div>
                         <div>
                             <label for="Mail">Adresse mail :</label>
-                            <input type="email" id="Mail" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" name="user_mail">
+                            <input type="email" id="Mail" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" name="user_mail"><br/>
                         </div>
                         <div>
                             <label for="Adresse">Adresse :</label>
-                            <input type="text" id=Adresse required pattern="[a-zA-Z0-9\s]+" name="user_message">
+                            <input type="text" id=Adresse required pattern="[a-zA-Z0-9\s]+" name="user_message"><br/>
                         </div>
                         <div>
                             <label for="Ville">Ville :</label>
