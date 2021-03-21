@@ -20,15 +20,19 @@ body {
         display: flex;
         justify-content: center;
         #oursons{
+            display: flex;
+            flex-direction: row;
             flex-wrap: wrap;
+            justify-content: space-around;
+            
             .teddie1{
                 max-width: 100%;
                justify-content: space-around;
-               border:2px solid black;
+               border:2px solid  rgb(175, 126, 175);
                box-shadow: 10px 5px 5px gray;
                border-radius: 5px;
-               width: 550px;
-               height: 500px;
+               width: 370px;
+               height: auto;
                background-color: blanchedalmond;
                margin-top: 10px;
                .name{
@@ -54,11 +58,11 @@ body {
        #produit{
         max-width: 100%;
         justify-content: space-around;
-        border:2px solid black;
+        border:2px solid rgb(175, 126, 175);
         box-shadow: 10px 5px 5px gray;
         border-radius: 5px;
         width: 550px;
-        height: 500px;
+        height: fit-content;
         background-color: blanchedalmond;
         margin-top: 10px;
         .name{
@@ -84,13 +88,23 @@ body {
     
      /*Page Panier*/
    table{
-    width: 400px;
+    width: auto;
     height: auto;
-    border: 2px solid black;
+    border: 2px solid purple;
+    box-shadow:10px 5px 5px gray;
     margin: 0;
     td{
-        border: 2px solid black; 
+        border: 2px solid purple; 
+        font-style: italic;
+        font-weight: bolder;
      }
+ }
+ #totalPrice{
+     margin-top: 10px;
+     width: fit-content;
+     background-color: rgb(221, 185, 230);
+     border:3px solid blueviolet;
+     box-shadow:10px 5px 5px gray;
  }
     
 /*Responsive */

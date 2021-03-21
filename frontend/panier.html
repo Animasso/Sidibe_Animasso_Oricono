@@ -13,11 +13,11 @@
       
    </head>
     <body onload="displayBasket()">
-        <div class="page">
+        <div class="pagePanier">
         <header>
          <!--Barre de navigation-->
          <nav>
-            <figure><a href="index.html"><img src="images/orinoco.png" alt="titre"></a></figure>
+            <figure><a href="../index.html"><img src="images/orinoco.png" alt="titre"></a></figure>
             
             <div class="haut">
                <p class="onglet">Nouveautés</p>
@@ -32,47 +32,46 @@
         <main>
             <div id="recapForm">
                 <div id="recap">
-                    <h1>Votre panier</h1>
+                    <div id="titre"><h1>Votre panier</h1></div>
                     <table>
                         <thead>
                             <tr>
                                 <th>Nom</th>
-                                <th>Ourson</th>
                                 <th>Prix</th>
                             </tr>
                         </thead>
                         <tbody></tbody>
                     </table>
-                    
+                    <div id="totalPrice"></div>
                     <div id="buttonDelete">
                         <button onclick="clearBasket()" id="clearBasket" type="button">vider le panier</button>
                     </div>
-                    <div id="totalPrice"></div>
+                   
                 </div>
           
                 <div id="form">
                     <h2>Valider votre commande</h2>
                     <fieldset>
-                    <form action='' method="POST" onsubmit="sendForm()">
+                    <form method="POST" onsubmit="sendForm()">
                         <div>
                             <label for="Nom">Nom :</label>
-                            <input type="text" id="Nom" required pattern="[a-zA-Z]{2,20}" name="user_name"><br/>
+                            <input type="text" id="Nom" required pattern="[a-zA-Z]{2,20}"><br/>
                         </div>
                         <div>
                             <label for="Prenom">Prenom:</label>
-                            <input type="text" id="Prenom" required pattern="[a-zA-Z]{2,20}" name="user_name"><br/>
+                            <input type="text" id="Prenom" required pattern="[a-zA-Z]{2,20}"><br/>
                         </div>
                         <div>
                             <label for="Mail">Adresse mail :</label>
-                            <input type="email" id="Mail" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" name="user_mail"><br/>
+                            <input type="email" id="Mail" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"><br/>
                         </div>
                         <div>
                             <label for="Adresse">Adresse :</label>
-                            <input type="text" id=Adresse required pattern="[a-zA-Z0-9\s]+" name="user_message"><br/>
+                            <input type="text" id=Adresse required pattern="[a-zA-Z0-9\s]+"><br/>
                         </div>
                         <div>
                             <label for="Ville">Ville :</label>
-                            <input type="text" id="Ville" required pattern="[a-zA-Z]{2,20}" name="user_message">
+                            <input type="text" id="Ville" required pattern="[A-Za-z]{2,50}" >
                         </div>
                        
                        <span id="error"></span>
@@ -95,6 +94,7 @@
             </div>
         </footer>
     </div>
-    </body>
     <script src="js/script.js"></script>
+    </body>
+    
 </html>

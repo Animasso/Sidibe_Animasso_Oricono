@@ -13,6 +13,57 @@
   margin-top: 30px;
 }
 
+.button #buttonForm {
+  background-color: #6e53b8;
+  border: 2px solid white;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#clearBasket {
+  background-color: #6e53b8;
+  border: 2px solid white;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#supprimer {
+  background-color: #6e53b8;
+  border: 2px solid white;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#addBasket {
+  background-color: #6e53b8;
+  border: 2px solid white;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
 /* traitement du formulaire*/
 #recapForm {
   display: -webkit-box;
@@ -23,11 +74,11 @@
 }
 
 #recapForm #form {
-  -webkit-box-shadow: 10px 5px 5px rebeccapurple;
-          box-shadow: 10px 5px 5px rebeccapurple;
+  -webkit-box-shadow: 10px 5px 5px #736d79;
+          box-shadow: 10px 5px 5px #736d79;
   margin-left: 30px;
   height: 400px;
-  border: 3px solid #6E1F9E;
+  border: 2px solid #9776b8;
   border-radius: 5px;
   text-align: center;
   padding-top: 40px;
@@ -142,20 +193,29 @@ main {
 }
 
 main #oursons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 main #oursons .teddie1 {
   max-width: 100%;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  border: 2px solid black;
+  border: 2px solid #af7eaf;
   -webkit-box-shadow: 10px 5px 5px gray;
           box-shadow: 10px 5px 5px gray;
   border-radius: 5px;
-  width: 550px;
-  height: 500px;
+  width: 370px;
+  height: auto;
   background-color: blanchedalmond;
   margin-top: 10px;
 }
@@ -184,12 +244,14 @@ main #oursons img {
   max-width: 100%;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  border: 2px solid black;
+  border: 2px solid #af7eaf;
   -webkit-box-shadow: 10px 5px 5px gray;
           box-shadow: 10px 5px 5px gray;
   border-radius: 5px;
   width: 550px;
-  height: 500px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   background-color: blanchedalmond;
   margin-top: 10px;
 }
@@ -216,14 +278,29 @@ img {
 
 /*Page Panier*/
 table {
-  width: 400px;
+  width: auto;
   height: auto;
-  border: 2px solid black;
+  border: 2px solid purple;
+  -webkit-box-shadow: 10px 5px 5px gray;
+          box-shadow: 10px 5px 5px gray;
   margin: 0;
 }
 
 table td {
-  border: 2px solid black;
+  border: 2px solid purple;
+  font-style: italic;
+  font-weight: bolder;
+}
+
+#totalPrice {
+  margin-top: 10px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: #ddb9e6;
+  border: 3px solid blueviolet;
+  -webkit-box-shadow: 10px 5px 5px gray;
+          box-shadow: 10px 5px 5px gray;
 }
 
 /*Responsive */

@@ -1,7 +1,7 @@
 let produit=null;
-let totalPrice=0;
+ let totalBasket=0
 
-
+const postUrlAPI = "http://localhost:3000/api/teddies/order";
 
 /* Fonction pour récuperer et charger les oursons dans la page index */
 function chargeProduit(){
@@ -20,7 +20,7 @@ function chargeProduit(){
                 /*Utilisation de la sructure html pour mettre en place la page produit */ 
                                 document.getElementById('oursons').innerHTML += `
                             <div class="teddie1">
-                                <a href="produit.html?id=${data[i]._id}">
+                                <a href="frontend/produit.html?id=${data[i]._id}">
                                     <figure><img src="${data[i].imageUrl}" alt=""></figure>
                                 </a>
                                 <div class="descriptionPrice">
@@ -96,6 +96,13 @@ function addBasket(){
     strStorage=JSON.stringify(panier);
     localStorage.setItem("panier",strStorage);
 }
+    JSON.parse(localStorage.getItem("panier")).forEach((produit)=>{
+    totalBasket+=produit.price/100;
+    })
+    document.getElementById("totalPrice").innerHTML+=`<h3>Prix total de votre panier: ${totalBasket} euros</h3>`;
+
+
+
 
 function displayBasket(){
     let panier=[];
@@ -107,14 +114,13 @@ function displayBasket(){
         document.querySelector('#recap table tbody').innerHTML+=`
                     <tr>
                         <td>${panier[i].name}</td>
-                        <td>${[i].imageUrl}</td>
                         <td>${panier[i].price / 100} euros</td>
-                        <td><button onclick="deleteProduct('${panier[i]._id}')"><i class="fas fa-minus-circle"></i>supprimer</button></td>
+                        <td><button id="supprimer" onclick="deleteProduct('${panier[i]._id}')"><i class="fas fa-minus-circle"></i> supprimer</button></td>
                     </tr>
-                    <div id="total"></div>
+                    
         `;
     } 
-    
+
 }
 function clearBasket(){
     let clearProducts=document.getElementById('buttonDelete');
@@ -150,32 +156,29 @@ function sendForm (){
         city:document.getElementById('Ville').value, 
         email:document.getElementById('Mail').value,
     }
-    let productSend=[];
+    let products=[];
     let strStorage=localStorage.getItem("panier");
         if (strStorage!==null){ 
             panier=JSON.parse(strStorage);
-            for (let i= 0; i < panier._id.length; i++) {
-            productSend.push(panier._id);
+            for (let i= 0; i < panier.length; i++) {
+            products.push(panier[i]._id);
             }
         } 
-    let objetSend= {
-        contact,productSend,
-    };
-    console.log(productSend);
-    requestSendObjet=JSON.stringify(objetSend);
-    var request=new XMLHttpRequest();
-    request.open('POST','http://localhost:3000/api/teddies/order');
-                
-    request.onreadystatechange=function () {
-        if (request.readyState == XMLHttpRequest.DONE) {
-            var response = JSON.parse(request.responseText);
-            console.log("response:",response);
-            localStorage.setItem('commande',request.responseText); 
-            window.location.href="confimation.html";
-        }
-    };        
-    request.setRequestHeader("Content-Type","application.json");
-    request.send(requestSendObjet);
 
-     
+    console.log(products);
+    
+    const request = new Request("http://localhost:3000/api/teddies/order", {
+        method: 'POST',
+        body: JSON.stringify({contact, products}),  
+        // Pour valider la requête on a besoin d'un objet JSON contenant "contact" && "products"
+        headers: new Headers({
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        })
+    });
+         fetch(request)
+        .then(response => response.json()) // response.json nous donnera l'orderId
+        .then( (response) => {console.log(response)
+        })
+        
 }

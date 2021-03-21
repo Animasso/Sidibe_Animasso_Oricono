@@ -28,20 +28,29 @@ main {
 }
 
 main #oursons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 main #oursons .teddie1 {
   max-width: 100%;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  border: 2px solid black;
+  border: 2px solid #af7eaf;
   -webkit-box-shadow: 10px 5px 5px gray;
           box-shadow: 10px 5px 5px gray;
   border-radius: 5px;
-  width: 550px;
-  height: 500px;
+  width: 370px;
+  height: auto;
   background-color: blanchedalmond;
   margin-top: 10px;
 }
@@ -70,12 +79,14 @@ main #oursons img {
   max-width: 100%;
   -ms-flex-pack: distribute;
       justify-content: space-around;
-  border: 2px solid black;
+  border: 2px solid #af7eaf;
   -webkit-box-shadow: 10px 5px 5px gray;
           box-shadow: 10px 5px 5px gray;
   border-radius: 5px;
   width: 550px;
-  height: 500px;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
   background-color: blanchedalmond;
   margin-top: 10px;
 }
@@ -102,14 +113,29 @@ img {
 
 /*Page Panier*/
 table {
-  width: 400px;
+  width: auto;
   height: auto;
-  border: 2px solid black;
+  border: 2px solid purple;
+  -webkit-box-shadow: 10px 5px 5px gray;
+          box-shadow: 10px 5px 5px gray;
   margin: 0;
 }
 
 table td {
-  border: 2px solid black;
+  border: 2px solid purple;
+  font-style: italic;
+  font-weight: bolder;
+}
+
+#totalPrice {
+  margin-top: 10px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: #ddb9e6;
+  border: 3px solid blueviolet;
+  -webkit-box-shadow: 10px 5px 5px gray;
+          box-shadow: 10px 5px 5px gray;
 }
 
 /*Responsive */

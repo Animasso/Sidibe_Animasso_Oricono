@@ -8,11 +8,11 @@
 }
 
 #recapForm #form {
-  -webkit-box-shadow: 10px 5px 5px rebeccapurple;
-          box-shadow: 10px 5px 5px rebeccapurple;
+  -webkit-box-shadow: 10px 5px 5px #736d79;
+          box-shadow: 10px 5px 5px #736d79;
   margin-left: 30px;
   height: 400px;
-  border: 3px solid #6E1F9E;
+  border: 2px solid #9776b8;
   border-radius: 5px;
   text-align: center;
   padding-top: 40px;

@@ -12,4 +12,55 @@
 .button {
   margin-top: 30px;
 }
+
+.button #buttonForm {
+  background-color: #6e53b8;
+  border: 2px solid white;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#clearBasket {
+  background-color: #6e53b8;
+  border: 2px solid white;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#supprimer {
+  background-color: #6e53b8;
+  border: 2px solid white;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#addBasket {
+  background-color: #6e53b8;
+  border: 2px solid white;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
 /*# sourceMappingURL=buttons.css.map */
