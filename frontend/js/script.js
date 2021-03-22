@@ -3,7 +3,7 @@ let produit=null;
 
 const postUrlAPI = "http://localhost:3000/api/teddies/order";
 
-/* Fonction pour récuperer et charger les oursons dans la page index */
+//Fonction pour récuperer et charger les oursons dans la page index 
 function chargeProduit(){
     fetch("http://localhost:3000/api/teddies")
     .then(response=>{
@@ -17,7 +17,7 @@ function chargeProduit(){
     .then(data=>{
         console.log(data);
             for (i = 0; i < data.length; i++) {
-                /*Utilisation de la sructure html pour mettre en place la page produit */ 
+                //Utilisation de la sructure html pour mettre en place la page produit 
                                 document.getElementById('oursons').innerHTML += `
                             <div class="teddie1">
                                 <a href="frontend/produit.html?id=${data[i]._id}">
@@ -26,7 +26,7 @@ function chargeProduit(){
                                 <div class="descriptionPrice">
                                 <div class="name">${data[i].name} </div>
                                 <div class="description">${data[i].description} </div>
-                                <div class="prix">${data[i].price / 100} eur</div>
+                                <div class="prix">${data[i].price / 100} euros</div>
                                 </div>
                                 </div>
                             `;
@@ -34,33 +34,34 @@ function chargeProduit(){
         
 
     })
+    
+    
  
 }
 
-
-/*Fonction pour la sélection et l'affichage du produit selectionné dans la page produit */
+//Fonction pour la sélection et l'affichage du produit selectionné dans la page produit 
 function selectProduct(){
-    /*On cree une variable productId qui stockera les id specifique à chaque ourson*/ 
+    //On cree une variable productId qui stockera les id specifique à chaque ourson 
     let productId=window.location.href.split("?id=")[1];
     console.log("id:",productId);
-/*On cree une requete pour recuperer les information des oursons avec leur id*/
+//On cree une requete pour recuperer les information des oursons avec leur id
     var request=new XMLHttpRequest();
     request.open('GET','http://localhost:3000/api/teddies/'+productId);
     request.onreadystatechange=function () {
         if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
             var response = JSON.parse(request.responseText);
             console.log("response:",response);
-/*Donc un produit égal la reponse qui contiendra un ourson avec son id, description,image,prix */
+//Donc un produit égal la reponse qui contiendra un ourson avec son id, description,image,prix 
             produit=response;
             
 
-/*On cree une variable options vide qui va acceuilir les options couleur de chaque oursons*/
+//On cree une variable options vide qui va acceuilir les options couleur de chaque oursons
             let options="";
             for(i=0;i<response.colors.length;i++){
                 options+=`<option value="noir">${response.colors[i]}</option>`;
                 console.log(options);
             }
-/*Utilisation de la sructure html pour mettre en place la page produit */
+//Utilisation de la sructure html pour mettre en place la page produit
             document.getElementById('produit').innerHTML= `
                 <div class="teddie1">
                     <a href="produit.{response._id}">
@@ -85,7 +86,8 @@ function selectProduct(){
         };  
         request.send();
     }
-
+/*Création d'une fonction pour l'ajout d'un produit au panier 
+et le sauvegarder dans le localstorage  */ 
 function addBasket(){
     let panier=[];
     let strStorage=localStorage.getItem("panier");
@@ -103,13 +105,14 @@ function addBasket(){
 
 
 
-
+//Création d' une fonction pour l'affichage du panier dans la page panier
 function displayBasket(){
     let panier=[];
     let strStorage=localStorage.getItem("panier");
     if (strStorage!==null){
         panier=JSON.parse(strStorage);
     }
+//Création d'une boucle avec queryselector et innerHTML
     for(i=0; i<panier.length; i++){
         document.querySelector('#recap table tbody').innerHTML+=`
                     <tr>
@@ -122,6 +125,7 @@ function displayBasket(){
     } 
 
 }
+//Création d'une fonction pour vider le panier et rafraichir la page
 function clearBasket(){
     let clearProducts=document.getElementById('buttonDelete');
     clearProducts.addEventListener('click',function(){
@@ -129,7 +133,7 @@ function clearBasket(){
         window.location.reload(); 
     })
 }
-    
+//Creation d'une fonction pour supprimer un article du panier
     function deleteProduct(productId){
         let panier=[];
         let newPanier=[];
@@ -146,8 +150,9 @@ function clearBasket(){
             window.location.reload();
         }
     }
-
+//Création d'une fonction pour l'envoi du formulaire 
 function sendForm (){
+//Création d'un objet contact qui comprend les valeur du formulaire 
     let contact=
     {
         firstName:document.getElementById('Nom').value,
@@ -156,6 +161,7 @@ function sendForm (){
         city:document.getElementById('Ville').value, 
         email:document.getElementById('Mail').value,
     }
+//Mise en place d'un array qui va contenir les id des produits sélectionnés
     let products=[];
     let strStorage=localStorage.getItem("panier");
         if (strStorage!==null){ 
@@ -166,11 +172,11 @@ function sendForm (){
         } 
 
     console.log(products);
-    
+//Mise en placce de la requete POST pour envoyer le formulaire 
     const request = new Request("http://localhost:3000/api/teddies/order", {
         method: 'POST',
         body: JSON.stringify({contact, products}),  
-        // Pour valider la requête on a besoin d'un objet JSON contenant "contact" && "products"
+// Pour valider la requête on a besoin d'un objet JSON contenant "contact" && "products"
         headers: new Headers({
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -179,6 +185,7 @@ function sendForm (){
          fetch(request)
         .then(response => response.json()) // response.json nous donnera l'orderId
         .then( (response) => {console.log(response)
+        // window.location="/frontend/confirmation.html";
         })
         
 }
