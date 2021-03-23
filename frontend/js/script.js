@@ -185,7 +185,8 @@ function sendForm (){
          fetch(request)
         .then(response => response.json()) // response.json nous donnera l'orderId
         .then( (response) => {console.log(response)
-        // window.location="/frontend/confirmation.html";
+        localStorage.setItem('order',response.orderId)
+         window.location="/frontend/confirmation.html";
         })
         
 }
