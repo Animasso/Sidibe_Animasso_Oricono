@@ -11,7 +11,7 @@
       <link rel="preconnect" href="https://fonts.gstatic.com">
       <link href="https://fonts.googleapis.com/css2?family=Noto+Serif&display=swap" rel="stylesheet">
    </head>
-   <body>
+   <body onload="confirmDisplay()">
       <div class="confirmation">
          <header>
             <!--Barre de navigation-->
@@ -31,9 +31,11 @@
                <div id="validation">
                   <h1>Félicitation votre commande a bien été validé elle vous sera livrée très prochainement</h1>
                   <div id="indentifiant"></div>
-                  <div id="totalPrice"></div>
+                  <div id="total"></div>
+                  <a href="../index.html"><button id="retour">Retourner au menu ourson</button></a>
                </div>
-            </main>
+         </main>
+         
          <footer>
          <a href="mailto:asidibe017@gmail.com"><p>Contactez-nous</p></a>
          <div id="social">

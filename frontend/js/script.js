@@ -98,10 +98,7 @@ function addBasket(){
     strStorage=JSON.stringify(panier);
     localStorage.setItem("panier",strStorage);
 }
-    JSON.parse(localStorage.getItem("panier")).forEach((produit)=>{
-    totalBasket+=produit.price/100;
-    })
-    document.getElementById("totalPrice").innerHTML+=`<h3>Prix total de votre panier: ${totalBasket} euros</h3>`;
+    
 
 
 
@@ -112,7 +109,7 @@ function displayBasket(){
     if (strStorage!==null){
         panier=JSON.parse(strStorage);
     }
-//Création d'une boucle avec queryselector et innerHTML
+    //Création d'une boucle avec queryselector et innerHTML
     for(i=0; i<panier.length; i++){
         document.querySelector('#recap table tbody').innerHTML+=`
                     <tr>
@@ -123,7 +120,10 @@ function displayBasket(){
                     
         `;
     } 
-
+    JSON.parse(localStorage.getItem("panier")).forEach((produit)=>{
+        totalBasket+=produit.price/100;
+    })
+    document.getElementById("totalPrice").innerHTML+=`<h3>Prix total de votre panier: ${totalBasket} euros</h3>`;
 }
 //Création d'une fonction pour vider le panier et rafraichir la page
 function clearBasket(){
@@ -185,8 +185,18 @@ function sendForm (){
          fetch(request)
         .then(response => response.json()) // response.json nous donnera l'orderId
         .then( (response) => {console.log(response)
-        localStorage.setItem('order',response.orderId)
-         window.location="/frontend/confirmation.html";
+            localStorage.setItem('order',response.orderId)
+            window.location="/frontend/confirmation.html";
         })
         
+}
+function confirmDisplay(){
+    let numOrder= localStorage.getItem('order')
+    console.log(numOrder);
+    document.getElementById('indentifiant').innerHTML=`<h2>Votre numero de commande est le : ${numOrder}<h2>`
+    JSON.parse(localStorage.getItem("panier")).forEach((produit)=>{
+    totalBasket+=produit.price/100;})
+    document.getElementById('total').innerHTML=`<h3>Votre commande est de  ${totalBasket} euros<h3>`
+    localStorage.clear();
+    
 }

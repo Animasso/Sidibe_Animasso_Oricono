@@ -138,6 +138,20 @@ table td {
           box-shadow: 10px 5px 5px gray;
 }
 
+.confirmation {
+  width: auto;
+  height: 500px;
+}
+
+#total {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  background-color: #6e53b8;
+  border: 2px solid white;
+  color: white;
+}
+
 /*Responsive */
 @media screen and (max-width: 768px) {
   .teddie1 {
