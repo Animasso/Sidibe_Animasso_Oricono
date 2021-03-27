@@ -29,4 +29,9 @@ footer p {
   color: blanchedalmond;
   cursor: pointer;
 }
+
+.confirmation footer {
+  position: absolute;
+  bottom: 0;
+}
 /*# sourceMappingURL=footer.css.map */
