@@ -1,7 +1,6 @@
 let produit=null;
- let totalBasket=0
+let totalBasket=0
 
-const postUrlAPI = "http://localhost:3000/api/teddies/order";
 
 //Fonction pour récuperer et charger les oursons dans la page index 
 function chargeProduit(){
@@ -17,7 +16,7 @@ function chargeProduit(){
     .then(data=>{
         console.log(data);
             for (i = 0; i < data.length; i++) {
-                //Utilisation de la sructure html pour mettre en place la page produit 
+//Utilisation de la sructure html pour mettre en place la page produit 
                                 document.getElementById('oursons').innerHTML += `
                             <div class="teddie1">
                                 <a href="frontend/produit.html?id=${data[i]._id}">
@@ -34,8 +33,6 @@ function chargeProduit(){
         
 
     })
-    
-    
  
 }
 
@@ -51,7 +48,7 @@ function selectProduct(){
         if (request.readyState == XMLHttpRequest.DONE && request.status == 200) {
             var response = JSON.parse(request.responseText);
             console.log("response:",response);
-//Donc un produit égal la reponse qui contiendra un ourson avec son id, description,image,prix 
+//Donc un produit égal la reponse qui contiendra un ourson avec son id, description,prix 
             produit=response;
             
 
@@ -100,8 +97,6 @@ function addBasket(){
 }
     
 
-
-
 //Création d' une fonction pour l'affichage du panier dans la page panier
 function displayBasket(){
     let panier=[];
@@ -125,6 +120,7 @@ function displayBasket(){
     })
     document.getElementById("totalPrice").innerHTML+=`<h3>Prix total de votre panier: ${totalBasket} euros</h3>`;
 }
+
 //Création d'une fonction pour vider le panier et rafraichir la page
 function clearBasket(){
     let clearProducts=document.getElementById('buttonDelete');
@@ -133,11 +129,15 @@ function clearBasket(){
         window.location.reload(); 
     })
 }
+
 //Creation d'une fonction pour supprimer un article du panier
-    function deleteProduct(productId){
+function deleteProduct(productId){
+//Creation de 2 paniers
         let panier=[];
         let newPanier=[];
         let strStorage=localStorage.getItem("panier");
+/*On récupere le panier on effectue une boucle à l'interieur si l'id est différent du productId 
+prit en paramétre un push est effectué dans newPanier avec les produits correspondant sans celui sélectionné */ 
         if (strStorage!==null){ 
             panier=JSON.parse(strStorage);
             for (let i= 0; i < panier.length; i++) {
@@ -150,6 +150,7 @@ function clearBasket(){
             window.location.reload();
         }
     }
+
 //Création d'une fonction pour l'envoi du formulaire 
 function sendForm (){
 //Création d'un objet contact qui comprend les valeur du formulaire 
@@ -164,15 +165,17 @@ function sendForm (){
 //Mise en place d'un array qui va contenir les id des produits sélectionnés
     let products=[];
     let strStorage=localStorage.getItem("panier");
+/*On parse le localstorage pour mettre les données dans panier puis boucle 
+à l'interieur du panier pour recupérer les id des produits et les mettre dans products*/
         if (strStorage!==null){ 
             panier=JSON.parse(strStorage);
             for (let i= 0; i < panier.length; i++) {
             products.push(panier[i]._id);
             }
         } 
-
     console.log(products);
-//Mise en placce de la requete POST pour envoyer le formulaire 
+
+//Mise en place de la requete POST pour envoyer le formulaire 
     const request = new Request("http://localhost:3000/api/teddies/order", {
         method: 'POST',
         body: JSON.stringify({contact, products}),  
@@ -185,17 +188,22 @@ function sendForm (){
          fetch(request)
         .then(response => response.json()) // response.json nous donnera l'orderId
         .then( (response) => {console.log(response)
+//On sauvegarde dans le localstorage la reponse avec la clé order
             localStorage.setItem('order',response.orderId)
             window.location="confirmation.html";
         })
         
 }
+
+//Création d'une fonction pour l'affichage de la page confirmation avec orderId et total
 function confirmDisplay(){
     let numOrder= localStorage.getItem('order')
     console.log(numOrder);
+//Mise en place de la structure HTML pour le numero de
     document.getElementById('indentifiant').innerHTML=`<h2>Votre numero de commande est le : ${numOrder}<h2>`
     JSON.parse(localStorage.getItem("panier")).forEach((produit)=>{
     totalBasket+=produit.price/100;})
+//Mise en place de structure HTML pour le total
     document.getElementById('total').innerHTML=`<h3>Votre commande est de  ${totalBasket} euros<h3>`
     localStorage.clear();
     
