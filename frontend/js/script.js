@@ -55,7 +55,7 @@ function selectProduct() {
             //On cree une variable options vide qui va acceuilir les options couleur de chaque oursons
             let options = "";
             for (i = 0; i < response.colors.length; i++) {
-                options += `<option value="">${response.colors[i]}</option>`;
+                options += `<option value="${response.colors[i]}">${response.colors[i]}</option>`;
                 console.log(options);
                 const envoyerPanier = document.querySelector("#addBasket button")
                 console.log(envoyerPanier)
@@ -75,7 +75,7 @@ function selectProduct() {
                         <div id="selection">
                             <label for="colorselect"><strong>VOTRE COULEUR:</strong> </label>
                             <select name="colorselect" id="colorSelect">
-                                <option onclick"addBasket()" >--Choisir une couleur--</option>
+                                <option valueonclick"addBasket()" >--Choisir une couleur--</option>
                                 ${options}
                             </select>  
                             <button onclick="addBasket()"id="addBasket" type="button">Ajouter au panier</button>
@@ -135,7 +135,7 @@ function displayBasket() {
                         <td>${panier[i].nomProduit}</td>
                         <td>${panier[i].prix } euros</td>
                         <td>${panier[i].color}<td>
-                        <td><button id="supprimer" onclick="deleteProduct('${panier[i]._id}')"><i class="fas fa-minus-circle"></i> supprimer</button></td>
+                        <td><button id="supprimer" onclick="deleteProduct(${i})"><i class="fas fa-minus-circle"></i> supprimer</button></td>
                     </tr>
                     
         `;
@@ -156,7 +156,8 @@ function clearBasket() {
 }
 
 //Creation d'une fonction pour supprimer un article du panier
-function deleteProduct(productId) {
+function deleteProduct(index) {
+    
     //Creation de 2 paniers
     let panier = [];
     let newPanier = [];
@@ -166,14 +167,14 @@ function deleteProduct(productId) {
     if (strStorage !== null) {
         panier = JSON.parse(strStorage);
         for (let i = 0; i < panier.length; i++) {
-            if (panier[i]._id != productId) {
+            if (i != index ) {
                 newPanier.push(panier[i]);
             }
         }
-        panier = newPanier;
-        localStorage.setItem("panier", JSON.stringify(panier));
-        window.location.reload();
     }
+    panier=newPanier;
+    localStorage.setItem("panier", JSON.stringify(panier));
+    window.location.reload();
 }
 
 //Création d'une fonction pour l'envoi du formulaire 
