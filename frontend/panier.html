@@ -55,26 +55,25 @@
                     <form method="POST" onsubmit="sendForm()">
                         <div>
                             <label for="Nom">Nom :</label>
-                            <input type="text" id="Nom" required pattern="[a-zA-Z]{2,20}"><br/>
+                            <input type="text" id="Nom" placeholder="ex:sidibe" required pattern="[a-zA-Z]{2,20}"><br/>
                         </div>
                         <div>
                             <label for="Prenom">Prenom:</label>
-                            <input type="text" id="Prenom" required pattern="[a-zA-Z]{2,20}"><br/>
+                            <input type="text" id="Prenom" placeholder="ex: animasso" required pattern="[a-zA-Z]{2,20}"><br/>
                         </div>
                         <div>
                             <label for="Mail">Adresse mail :</label>
-                            <input type="email" id="Mail" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"><br/>
+                            <input type="email" id="Mail" placeholder="ex: mail@monmail.com" pattern="[a-zA-Z0-9._\-]+@[a-zA-Z0-9._\-]+\.[a-zA-Z]{2,10}" required="" type="email"><br/>
                         </div>
                         <div>
                             <label for="Adresse">Adresse :</label>
-                            <input type="text" id=Adresse required pattern="[a-zA-Z0-9\s]+"><br/>
+                            <input type="text" id=Adresse placeholder="ex: 18 rue des lilas" required pattern="[a-zA-Z0-9\s]+"><br/>
                         </div>
                         <div>
                             <label for="Ville">Ville :</label>
-                            <input type="text" id="Ville" required pattern="[A-Za-z]{2,50}" >
+                            <input type="text" id="Ville" placeholder="ex: paris" required pattern="[A-Za-z]{2,50}" >
                         </div>
                        
-                       <span id="error"></span>
 
                        <div class="button">
                         <button id="buttonForm" type="submit">Valider votre commande</button>
