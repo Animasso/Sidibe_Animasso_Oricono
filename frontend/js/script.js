@@ -60,18 +60,6 @@ function selectProduct() {
                 const envoyerPanier = document.querySelector("#addBasket button")
                 console.log(envoyerPanier)
 
-                let choixColor = options.value;
-                console.log(choixColor);
-                let OptionProduit = {
-                    nomProduit: produit.name,
-                    idproduit: produit._id,
-                    description: produit.description,
-                    image: produit.imageUrl,
-                    option: choixColor,
-                    quantite: 1,
-                    prix: produit.price / 100
-                }
-                console.log(OptionProduit)
 
             }
             //Utilisation de la sructure html pour mettre en place la page produit
@@ -87,7 +75,7 @@ function selectProduct() {
                         <div id="selection">
                             <label for="colorselect"><strong>VOTRE COULEUR:</strong> </label>
                             <select name="colorselect" id="colorSelect">
-                                <option value="">--Choisir une couleur--</option>
+                                <option onclick"addBasket()" >--Choisir une couleur--</option>
                                 ${options}
                             </select>  
                             <button onclick="addBasket()"id="addBasket" type="button">Ajouter au panier</button>
@@ -104,13 +92,28 @@ et le sauvegarder dans le localstorage  */
 
 
 function addBasket() {
-
+    let choixColor = document.getElementById("colorSelect");
+    console.log(choixColor);
+    let color=choixColor.value;
+    const sendColor=document.getElementById('addBasket');
+    console.log(sendColor);
+    
+    let OptionProduit = {
+        nomProduit: produit.name,
+        idproduit: produit._id,
+        description: produit.description,
+        image: produit.imageUrl,
+        color: choixColor.value,
+        quantite: 1,
+        prix: produit.price / 100
+    }
+    console.log(OptionProduit)
     let panier = [];
     let strStorage = localStorage.getItem("panier");
     if (strStorage !== null) {
         panier = JSON.parse(strStorage);
     }
-    panier.push(produit);
+    panier.push(OptionProduit);
 
     strStorage = JSON.stringify(panier);
     window.alert('Produit ajouté au panier');
@@ -129,16 +132,16 @@ function displayBasket() {
     for (i = 0; i < panier.length; i++) {
         document.querySelector('#recap table tbody').innerHTML += `
                     <tr>
-                        <td>${panier[i].name}</td>
-                        <td>${panier[i].price / 100} euros</td>
-                        <td><td>
+                        <td>${panier[i].nomProduit}</td>
+                        <td>${panier[i].prix } euros</td>
+                        <td>${panier[i].color}<td>
                         <td><button id="supprimer" onclick="deleteProduct('${panier[i]._id}')"><i class="fas fa-minus-circle"></i> supprimer</button></td>
                     </tr>
                     
         `;
     }
     JSON.parse(localStorage.getItem("panier")).forEach((produit) => {
-        totalBasket += produit.price / 100;
+        totalBasket += produit.prix;
     })
     document.getElementById("totalPrice").innerHTML += `<h3>Prix total de votre panier: ${totalBasket} euros</h3>`;
 }
@@ -230,7 +233,7 @@ function confirmDisplay() {
     //Mise en place de la structure HTML pour le numero de
     document.getElementById('indentifiant').innerHTML = `<h2>Votre numero de commande est le : ${numOrder}<h2>`
     JSON.parse(localStorage.getItem("panier")).forEach((produit) => {
-        totalBasket += produit.price / 100;
+        totalBasket += produit.prix ;
     })
     //Mise en place de structure HTML pour le total
     document.getElementById('total').innerHTML = `<h3>Votre commande est de  ${totalBasket} euros<h3>`
