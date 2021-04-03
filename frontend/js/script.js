@@ -196,7 +196,7 @@ function sendForm() {
     if (strStorage !== null) {
         panier = JSON.parse(strStorage);
         for (let i = 0; i < panier.length; i++) {
-            products.push(panier[i]._id);
+            products.push(panier[i].idproduit);
         }
     }
     console.log(products);
