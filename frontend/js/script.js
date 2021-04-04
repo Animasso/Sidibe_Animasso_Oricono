@@ -94,10 +94,10 @@ et le sauvegarder dans le localstorage  */
 function addBasket() {
     let choixColor = document.getElementById("colorSelect");
     console.log(choixColor);
-    let color=choixColor.value;
-    const sendColor=document.getElementById('addBasket');
+    let color = choixColor.value;
+    const sendColor = document.getElementById('addBasket');
     console.log(sendColor);
-    
+
     let OptionProduit = {
         nomProduit: produit.name,
         idproduit: produit._id,
@@ -133,16 +133,18 @@ function displayBasket() {
         document.querySelector('#recap table tbody').innerHTML += `
                     <tr>
                         <td>${panier[i].nomProduit}</td>
-                        <td>${panier[i].prix } euros</td>
+                        <td>${panier[i].prix} euros</td>
                         <td>${panier[i].color}<td>
                         <td><button id="supprimer" onclick="deleteProduct(${i})"><i class="fas fa-minus-circle"></i> supprimer</button></td>
                     </tr>
                     
         `;
     }
+    if (strStorage !== null){
     JSON.parse(localStorage.getItem("panier")).forEach((produit) => {
         totalBasket += produit.prix;
     })
+    }
     document.getElementById("totalPrice").innerHTML += `<h3>Prix total de votre panier: ${totalBasket} euros</h3>`;
 }
 
@@ -157,7 +159,7 @@ function clearBasket() {
 
 //Creation d'une fonction pour supprimer un article du panier
 function deleteProduct(index) {
-    
+
     //Creation de 2 paniers
     let panier = [];
     let newPanier = [];
@@ -167,17 +169,27 @@ function deleteProduct(index) {
     if (strStorage !== null) {
         panier = JSON.parse(strStorage);
         for (let i = 0; i < panier.length; i++) {
-            if (i != index ) {
+            if (i != index) {
                 newPanier.push(panier[i]);
             }
         }
     }
-    panier=newPanier;
+    panier = newPanier;
     localStorage.setItem("panier", JSON.stringify(panier));
     window.location.reload();
 }
 
 //Création d'une fonction pour l'envoi du formulaire 
+const element=document.querySelector('form');
+try{
+    element.addEventListener('submit',event=>{
+    event.preventDefault()
+    console.log('form no send')
+    });
+}
+catch{
+    console.log("pas de formulaire")
+}
 function sendForm() {
     //Création d'un objet contact qui comprend les valeur du formulaire 
     let contact =
@@ -198,6 +210,9 @@ function sendForm() {
         for (let i = 0; i < panier.length; i++) {
             products.push(panier[i].idproduit);
         }
+    } else {
+        window.alert('votre panier est vide');
+        window.location.reload();
     }
     console.log(products);
 
@@ -221,8 +236,6 @@ function sendForm() {
                 localStorage.setItem('order', response.orderId)
                 window.location = "confirmation.html";
             })
-    } else {
-        window.alert('votre panier est vide');
     }
 }
 
@@ -234,7 +247,7 @@ function confirmDisplay() {
     //Mise en place de la structure HTML pour le numero de
     document.getElementById('indentifiant').innerHTML = `<h2>Votre numero de commande est le : ${numOrder}<h2>`
     JSON.parse(localStorage.getItem("panier")).forEach((produit) => {
-        totalBasket += produit.prix ;
+        totalBasket += produit.prix;
     })
     //Mise en place de structure HTML pour le total
     document.getElementById('total').innerHTML = `<h3>Votre commande est de  ${totalBasket} euros<h3>`
